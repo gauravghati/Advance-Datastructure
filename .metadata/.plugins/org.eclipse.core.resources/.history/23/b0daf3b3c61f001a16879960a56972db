@@ -1,0 +1,30 @@
+/*
+ * stack.cpp
+ *
+ *  Created on: Dec 16, 2019
+ *      Author: f10
+ */
+
+#include "stack.h"
+
+stack::stack() {
+	top = 0;
+}
+
+void stack::push(int num){
+	if(top==MAX){
+		return -1;
+	}
+	top++;
+	data[top] = num;
+}
+
+int stack::pop(){
+	top--;
+	return data[top+1];
+}
+
+stack::~stack() {
+
+}
+

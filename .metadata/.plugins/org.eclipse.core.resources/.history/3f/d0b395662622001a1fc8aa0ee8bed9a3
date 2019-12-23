@@ -1,0 +1,95 @@
+//============================================================================
+// Name        : reverse-linked-list.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+#include <string>
+#include "Stack.h"
+#include "Stack.cpp"
+using namespace std;
+#define MAX 50
+
+class Expression{
+	char arr[MAX];
+	public:
+		void toprefix();
+		void topostfix();
+		void enterdata();
+};
+
+void Expression :: toprefix(){
+
+}
+
+void Expression :: topostfix(){
+	Stack<char> s;
+	string postfix;
+	int i=0;
+
+	while(arr[i]!='\0'){
+		if(arr[i] == '('){
+			s.push(arr[i]);
+		} else if (arr[i]==')'){
+			while(s.Top()!='('){
+				char val = s.pop();
+				postfix[postfix.size()-1] = val;
+			}
+		} else if((arr[i] <= 65 && arr[i] >= 91) || (arr[i] <= 97 && arr[i] >= 129)){
+			s.push(arr[i]);
+		}
+		else{
+			 if(priority(s.Top())>= priority(arr[i])){
+				char val = s.pop();
+				postfix[postfix.size()-1] = val;
+			 }
+
+		}
+	}
+
+}
+
+int priority(char a){
+	switch(a){
+		case '(':
+			return 1;
+
+		case ')':
+			return 2;
+
+		case '+':
+			return 3;
+
+		case '-':
+			return 3;
+
+		case '*':
+			return 4;
+
+		case '/':
+			return 4;
+
+		case '^':
+			return 5;
+	}
+
+}
+
+void Expression :: enterdata(){
+	cout << "Enter Infix String";
+	cin.getline(arr, MAX);
+}
+
+int main() {
+	int num;
+	int val;
+
+	Expression ex;
+	ex.enterdata();
+
+
+	return 0;
+}
