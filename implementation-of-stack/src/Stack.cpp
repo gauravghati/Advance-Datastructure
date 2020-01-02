@@ -18,7 +18,7 @@ void Stack<T>::push(T num){
 	Node<T> * p;
 	p = new Node<T>;
 	p->next = top;
-	top = p;   //top++;
+	top = p;   			//top++;
 	top->data = num;	//data[top] = num;
 }
 

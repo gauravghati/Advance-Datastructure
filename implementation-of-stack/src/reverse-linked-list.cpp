@@ -49,12 +49,10 @@ void Expression :: evalpre(){
 }
 
 void Expression :: toprefix(){
-
-	char * chgArr = reverse(arr);
-	chgArr = postfixlogic(chgArr);
-	chgArr = reverse(chgArr);
-
 	if(checkinfix(arr)){
+		char * chgArr = reverse(arr);
+		chgArr = postfixlogic(chgArr);
+		chgArr = reverse(chgArr);
 		cout << "\nPREFIX EXPRESSION: " << chgArr;
 	} else {
 		cout << "ENTER VALID INFIX EXPRESSION:";
@@ -62,9 +60,8 @@ void Expression :: toprefix(){
 }
 
 void Expression :: topostfix(){
-	char *postfix = postfixlogic(arr);
-
 	if(checkinfix(arr)){
+		char *postfix = postfixlogic(arr);
 		cout << "POSTFIX EXPRESSION: "<< postfix;
 	} else {
 		cout << "ENTER VALID INFIX EXPRESSION:";
@@ -78,7 +75,6 @@ void Expression :: display(){
 		i++;
 	}
 }
-
 
 int eval(char* arr){
 	Stack<int> s;
@@ -104,7 +100,10 @@ bool checkinfix(char * arr){
 	int var = 0, var2 = 0;
 	Stack<char> s;
 	while(arr[i]!='\0'){
-		if((arr[i] >= 65 && arr[i] <= 91) || (arr[i] >= 97 && arr[i] <= 129)
+		if(arr[i]==')' || arr[i]=='('){
+
+		}
+		else if((arr[i] >= 65 && arr[i] <= 91) || (arr[i] >= 97 && arr[i] <= 129)
 				|| (arr[i]>=48 && arr[i]<=57 )){
 			var++;
 		} else {
@@ -116,6 +115,7 @@ bool checkinfix(char * arr){
 	if(var-1!=var2)
 		return false;
 
+	cout << "1";
 	i=0;							// for "(" and ")"
 	while(arr[i]!='\0'){
 		if(arr[i]=='('){
@@ -127,9 +127,12 @@ bool checkinfix(char * arr){
 		}
 		i++;
 	}
+	cout << "2";
+
 	if(!s.empty())
 		return false;
 
+	cout << "3";
 	i=0;
 	while(arr[i]!='\0'){
 		i++;
@@ -140,6 +143,7 @@ bool checkinfix(char * arr){
 				|| (arr[i] >= 97 && arr[i] <= 129) || (arr[i]>=48 && arr[i]<=57 )))){
 		return false;
 	}
+	cout << "4";
 
 	return true;
 }
@@ -292,3 +296,15 @@ int main() {
 	}
 	return 0;
 }
+
+
+/* --------------------------------------------------------------
+ *
+ * OUTPUT:
+ *
+ *
+ *
+ *
+ *
+ *
+ */
