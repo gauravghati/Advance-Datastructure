@@ -1,10 +1,17 @@
-//============================================================================
-// Name        : reverse-linked-list.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
+/*
+=========================================================================
+Assignment : Implementation of Stack
+Name : Gaurav Ghati
+class : SE 10
+Batch : F 10
+
+Problem Statement:
+Write a program to implement stack as an abstract data type using linked list and
+use this ADT for conversion of infix expression to postfix, prefix and evaluation of
+postfix/prefix expression.
+
+=========================================================================
+*/
 
 #include <iostream>
 #include <string>
@@ -115,7 +122,6 @@ bool checkinfix(char * arr){
 	if(var-1!=var2)
 		return false;
 
-	cout << "1";
 	i=0;							// for "(" and ")"
 	while(arr[i]!='\0'){
 		if(arr[i]=='('){
@@ -127,12 +133,10 @@ bool checkinfix(char * arr){
 		}
 		i++;
 	}
-	cout << "2";
 
 	if(!s.empty())
 		return false;
 
-	cout << "3";
 	i=0;
 	while(arr[i]!='\0'){
 		i++;
@@ -140,10 +144,9 @@ bool checkinfix(char * arr){
 	i = i - 1;
 	if(!(((arr[0] >= 65 && arr[0] <= 91) || (arr[0] >= 97 && arr[0] <= 129)
 				|| (arr[0]>=48 && arr[0]<=57 )) && ((arr[i] >= 65 && arr[i] <= 91)
-				|| (arr[i] >= 97 && arr[i] <= 129) || (arr[i]>=48 && arr[i]<=57 )))){
+				|| (arr[i] >= 97 && arr[i] <= 129) || (arr[i]>=48 && arr[i]<=57 )) || arr[i]==')' || arr[0]=='(')){
 		return false;
 	}
-	cout << "4";
 
 	return true;
 }
@@ -278,15 +281,19 @@ int main() {
 		switch(ch){
 			case 1:
 				ex.topostfix();
+				cout << endl;
 				break;
 			case 2:
 				ex.toprefix();
+				cout << endl;
 				break;
 			case 3:
 				ex.evalpost();
+				cout << endl;
 				break;
 			case 4:
 				ex.evalpre();
+				cout << endl;
 				break;
 			case 5:
 				break;
@@ -297,14 +304,63 @@ int main() {
 	return 0;
 }
 
+/*
 
-/* --------------------------------------------------------------
- *
- * OUTPUT:
- *
- *
- *
- *
- *
- *
- */
+OUTPUT: 
+
+1) Convert Expression to postfix
+2) Convert Expression to prefix
+3) Evaluation of postfix
+4) Evaluation of prefix
+5) Exit
+Enter Choice: 1
+Enter Expression: A/B^C+D*E-A*C
+POSTFIX EXPRESSION: ABC^/DE*+AC*-
+
+1) Convert Expression to postfix
+2) Convert Expression to prefix
+3) Evaluation of postfix
+4) Evaluation of prefix
+5) Exit
+Enter Choice: 2
+Enter Expression: A/B^C+D*E-A*C
+
+PREFIX EXPRESSION: +/A^BC-*DE*AC
+
+1) Convert Expression to postfix
+2) Convert Expression to prefix
+3) Evaluation of postfix
+4) Evaluation of prefix
+5) Exit
+Enter Choice: 3
+Enter Expression: 653+9*+
+
+Evaluation of Postfix is:78
+
+
+1) Convert Expression to postfix
+2) Convert Expression to prefix
+3) Evaluation of postfix
+4) Evaluation of prefix
+5) Exit
+Enter Choice: 4
+Enter Expression: +/A^BC-*DE*AC
+
+Enter value numeric of C: 2
+Enter value numeric of A: 3
+Enter value numeric of E: 4
+Enter value numeric of D: 5
+Enter value numeric of B: 6
+
+Evaluation of Prefix is: 7
+
+
+1) Convert Expression to postfix
+2) Convert Expression to prefix
+3) Evaluation of postfix
+4) Evaluation of prefix
+5) Exit
+Enter Choice: 5
+
+
+*/

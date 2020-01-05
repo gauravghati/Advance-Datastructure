@@ -24,18 +24,18 @@ class Patient{
 };
 
 void Patient :: scan(){
-
+	
 }
 
 void Patient :: display(){
+	
+}
 
+void Patient :: next_pat(){
+	
 }
 
 int main() {
-
-
-
-
 
 
 	return 0;

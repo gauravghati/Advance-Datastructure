@@ -16,11 +16,6 @@ Queue<T>::Queue() {
 }
 
 template <class T>
-Queue<T>::~Queue() {
-
-}
-
-template <class T>
 void Queue<T> :: enque(T){
 	Node<T> * p;
 	p = new Node<T>;
@@ -30,5 +25,10 @@ void Queue<T> :: enque(T){
 
 template <class T>
 T Queue<T> :: deque(){
+
+}
+
+template <class T>
+Queue<T>::~Queue() {
 
 }
