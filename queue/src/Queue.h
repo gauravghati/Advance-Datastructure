@@ -22,7 +22,7 @@ class Queue {
 public:
 	Queue();
 	void enque(T);
-	T deque();
+	T deque(int);
 	virtual ~Queue();
 };
 
