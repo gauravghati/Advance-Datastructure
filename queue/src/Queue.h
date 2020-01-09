@@ -22,7 +22,10 @@ class Queue {
 public:
 	Queue();
 	void enque(T);
-	T deque(int);
+	T deque(int);				// deque
+	void printQ();				// Print whole Q
+	T getele(int);				// get i(th) element
+	int size();
 	virtual ~Queue();
 };
 
