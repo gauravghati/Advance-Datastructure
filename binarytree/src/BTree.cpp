@@ -7,6 +7,7 @@
 
 #include "BTree.h"
 #include <iostream>
+using namespace std;
 
 template <class T>
 BTree<T>::BTree() {
@@ -27,10 +28,9 @@ Node<T>* BTree<T>::insertR(Node<T>* temp, T key){
 		Node<T> *p = new Node<T>;
 		p->data = key;
 		return p;
-	}
-	do{
-		std :: cout << "\nEnter L/R for Left Insert or Right Insert of " << (temp->data) <<": ";
-		std :: cin >> var;
+	} do {
+		cout << "\nEnter L/R for Left Insert or Right Insert of " << (temp->data) <<": ";
+		cin >> var;
 	} while(var!='L' && var!='l' && var!='r' && var!='R');
 
 	if(var == 'l' || var == 'L'){
@@ -42,25 +42,41 @@ Node<T>* BTree<T>::insertR(Node<T>* temp, T key){
 }
 
 template<class T>
-void BTree<T>::displayR(Node<T>* root){
-
+void BTree<T>::inorder(Node<T>* root){
+	if(root != NULL){
+		inorder(root->left);
+		cout << " " << root->data;
+		inorder(root->right);
+	}
 }
 
 template<class T>
-void BTree<T>::inorder(Node<T>* root){
+void BTree<T>::preorder(Node<T>* root){
+	if(root != NULL){
+		cout << " " << root->data;
+		inorder(root->left);
+		inorder(root->right);
+	}
+}
 
+template<class T>
+void BTree<T>::postorder(Node<T>* root){
+	if(root != NULL){
+		inorder(root->left);
+		inorder(root->right);
+		cout << " " << root->data;
+	}
 }
 
 template<class T>
 int BTree<T>::depthR(Node<T>* root){
+
 	return 0;
 }
 
 template<class T>
 Node<T>* BTree<T>::copy(Node<T>* root){
-
 }
-
 
 // Calling Public Functions
 template<class T>
@@ -85,5 +101,9 @@ int BTree<T>::depth(){
 
 template<class T>
 void BTree<T>::disleafs(){
-
+	inorder(root);
+	cout << "\n";
+	preorder(root);
+	cout << "\n";
+	postorder(root);
 }

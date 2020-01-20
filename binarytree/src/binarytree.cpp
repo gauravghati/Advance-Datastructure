@@ -30,5 +30,7 @@ int main() {
 	p.insert(89);
 	p.insert(23);
 	p.insert(67);
+
+	p.disleafs();
 	return 0;
 }

@@ -10,10 +10,9 @@
 
 template <class T>
 class Node{
-	private:
-		T data;
-		Node<T> *left, *right;
-	friend class BTree;
+public:
+	T data;
+	Node<T> *left, *right;
 };
 
 template<class T>
@@ -22,12 +21,15 @@ class BTree {
 	Node<T>* insertR(Node<T>*, T);
 	int depthR(Node<T>*);
 	void inorder(Node<T>*);				// for printing inorder of tree
+	void preorder(Node<T>*);
+	void postorder(Node<T>*);
 	Node<T>* copy(Node<T>*);			// to make a copy
+
 public:
 	BTree();
-	void operator=(BTree &);
+	void operator=(BTree<T> &);
 	void insert(T);
-	void display();
+	void display();					// for tree structure
 	int depth();
 	void disleafs();
 	virtual ~BTree();
