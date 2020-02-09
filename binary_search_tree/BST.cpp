@@ -54,6 +54,40 @@ void BST<T> :: preorder() {
 }
 
 template <class T>
+void BST<T> :: postorder() {
+	Node<T>* q = root;
+	stack<Node<T>*> s;
+
+	while(true){
+		while(q != NULL){
+			s.push(q);
+			s.push(q);
+			q = q -> left;
+		}
+
+		if(s.empty()) return;
+		q = s.top();
+		s.pop();
+
+		if(!s.empty() && s.top() == q)
+			q = q -> right;
+		else{
+			cout << q -> data << " ";
+			q = NULL;
+		}
+	}
+}
+
+template <class T>
+void BST<T> :: levelorder() {									// DONE
+	int h = height(root);  
+    int i;  
+    for (i = 1; i <= h; i++)  
+        printGivenLevel(root, i); 
+}
+
+// Recursion Private Functions
+template <class T>
 Node<T>* BST<T> :: deleteR(Node<T>* q, T data) {
 
     if (q == NULL) return root; 
@@ -98,39 +132,6 @@ Node<T>* BST<T> :: minValueNode(Node<T>* node){
   
     return current; 
 } 
-
-template <class T>
-void BST<T> :: postorder() {
-	Node<T>* q = root;
-	stack<Node<T>*> s;
-
-	while(true){
-		while(q != NULL){
-			s.push(q);
-			s.push(q);
-			q = q -> left;
-		}
-
-		if(s.empty()) return;
-		q = s.top();
-		s.pop();
-
-		if(!s.empty() && s.top() == q)
-			q = q -> right;
-		else{
-			cout << q -> data << " ";
-			q = NULL;
-		}
-	}
-}
-
-template <class T>
-void BST<T> :: levelorder() {									// DONE
-	int h = height(root);  
-    int i;  
-    for (i = 1; i <= h; i++)  
-        printGivenLevel(root, i); 
-}
 
 template <class T>
 void BST<T> :: printGivenLevel(Node<T>* q, int level) { 		// DONE

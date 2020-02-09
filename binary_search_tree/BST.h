@@ -25,14 +25,14 @@ class BST {
 	void mirrorR(Node<T>*);
 
 public: 
-	// ALL ARE Non-Recursive Functions
+
 	BST();
-	void create();						// create tree //
-	void insert(T);						// insert single node //
-	void search(T);						// search the element in tree //
-	void disleafs();					// for leaf node //
-	void deleteNode(T);
-	void mirror();
+	void create();						// create tree 
+	void insert(T);						// insert single node 
+	void search(T);						// search the element in tree
+	void disleafs();					// for leaf node 
+	void deleteNode(T);					// Delete node
+	void mirror();						// Mirror Image
 	virtual ~BST();
 };
 
