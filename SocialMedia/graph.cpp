@@ -1,8 +1,8 @@
 //============================================================================
-// Name        : binarytree.cpp
-// Author      : Gaurav
+// Name        : graph.cpp
+// Author      :
 // Version     :
-// Copyright   : 
+// Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
@@ -10,7 +10,5 @@
 using namespace std;
 
 int main() {
-
-
 	return 0;
 }
