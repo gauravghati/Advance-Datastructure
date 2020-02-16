@@ -7,7 +7,7 @@ Batch : F 10
 
 Problem Statement:
 	Consider a friends‘ network on face book social web site. Model it as a graph to
-	represent each node as a user and a link to represent the fried relationship between
+	represent each node as a user and a link to represent the friend relationship between
 	them. Store data such as date of birth, number of comments for each user.
 		1. Find who is having maximum friends
 		2. Find who has post maximum and minimum comments
@@ -16,13 +16,14 @@ Problem Statement:
 */
 
 #include <iostream>
-#include "SocialMedia.h"
+#include "SocialMedia.cpp"
 using namespace std;
 
 int main() {
 
 	SocialMedia sm;
 
+	sm.createNetwork();
 	sm.insertUser("Gaurav");
 	sm.insertUser("Puneet");
 	sm.insertUser("Ellika");

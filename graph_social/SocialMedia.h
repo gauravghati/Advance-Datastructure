@@ -16,12 +16,14 @@ class VertexNode;
 
 class EdgeNode{					// FRIENDS
 	public:
+		EdgeNode();
 		EdgeNode *nextEdge;
 		VertexNode *nextVertex;
 };
 
 class VertexNode{				// USER
 public:
+	VertexNode();
 	string name;
 	int comments;
 	int dd, mm, yyyy;
@@ -43,7 +45,7 @@ public:
 	void createNetwork();
 	VertexNode* getUser(string);
 	void insertUser(string);
-	void addFriend();
+	void addFriend(string, string);
 	void displayNetwork();
 	virtual ~SocialMedia();
 };

@@ -8,6 +8,16 @@
 #include "SocialMedia.h"
 #include <iostream>
 
+VertexNode::VertexNode() {
+	nextVertex = NULL;
+	nextEdge = NULL;
+}
+
+EdgeNode::EdgeNode() {
+	nextVertex = NULL;
+	nextEdge = NULL;
+}
+
 SocialMedia::SocialMedia() {
 	G=NULL;
 }
@@ -19,7 +29,7 @@ SocialMedia::~SocialMedia() {
 void SocialMedia::createNetwork(){
 	G=new GraphHead;
 	G->count=0;
-	G->head = NULL;
+	G->head = new VertexNode;
 }
 
 VertexNode* SocialMedia::getUser(string name){
@@ -39,33 +49,33 @@ void SocialMedia::insertUser(string name){
 	cout << "\nyyyy: ";
 	cin >> (newPtr-> yyyy);
 
-	VertexNode * temp;
+	VertexNode *temp;
 	temp = G->head;
 	int n = G->count;
 
 	if(n==0){
 		G->head = newPtr;
-		(G->count)++;
+		G->count += 1;
 	}
 
-	while(n!=0){
+	while(temp->nextVertex!=NULL){
 		temp = temp->nextVertex;
-		n--;
 	}
 	temp->nextVertex = newPtr;
+	G->count += 1;
 }
 
-void SocialMedia::addFriend() {
-
+void SocialMedia::addFriend(string toname, string fromname) {
+	EdgeNode *newfriend = new EdgeNode;
+	
 }	
 
 
 void SocialMedia::displayNetwork(){
 	VertexNode *vptr = G->head;
-	int n = G->count;
 
-	while(n--){
-		cout << (vptr->name);
+	while(vptr != NULL){
+		cout << (vptr->name) << "\n";
 		vptr = vptr -> nextVertex;
 	}
 }
