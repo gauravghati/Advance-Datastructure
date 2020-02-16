@@ -17,6 +17,13 @@ public:
 	friend class Etree;
 };
 
+class stacknode{
+private:
+	Node *data;
+	int flag;
+	friend class Etree;
+};
+
 class Etree {
 	Node * root;
 	void inorder_rec(Node*);
