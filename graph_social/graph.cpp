@@ -16,7 +16,7 @@ Problem Statement:
 */
 
 #include <iostream>
-#include "SocialMedia.cpp"
+#include "SocialMedia.h"
 using namespace std;
 
 int main() {
@@ -24,10 +24,15 @@ int main() {
 	SocialMedia sm;
 
 	sm.createNetwork();
-	sm.insertUser("Gaurav");
-	sm.insertUser("Puneet");
-	sm.insertUser("Ellika");
-	sm.insertUser("Sakshee");
+	sm.insertUser("a");
+	sm.insertUser("b");
+	sm.insertUser("c");
+	sm.insertUser("d");
+	sm.addFriend("a", "b");
+	sm.addFriend("b", "c");
+	sm.addFriend("a", "c");
+	sm.addFriend("d", "a");
+	sm.addFriend("d", "c");
 
 	sm.displayNetwork();
 
