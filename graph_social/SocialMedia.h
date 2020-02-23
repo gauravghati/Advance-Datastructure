@@ -27,7 +27,7 @@ public:
 	string name;
 	int comments;
 	int dd, mm, yyyy;
-	bool visted;
+	bool visited;
 	EdgeNode *nextEdge;
 	VertexNode *nextVertex;
 };
@@ -47,6 +47,8 @@ public:
 	void insertUser(string);
 	void addFriend(string, string);
 	void displayNetwork();
+	void maxFriend(string);
+	void bfs();
 	virtual ~SocialMedia();
 };
 

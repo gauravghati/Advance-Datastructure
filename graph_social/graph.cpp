@@ -16,7 +16,7 @@ Problem Statement:
 */
 
 #include <iostream>
-#include "SocialMedia.h"
+#include "SocialMedia.cpp"
 using namespace std;
 
 int main() {
@@ -32,9 +32,12 @@ int main() {
 	sm.addFriend("b", "c");
 	sm.addFriend("a", "c");
 	sm.addFriend("d", "a");
-	sm.addFriend("d", "c");
 
 	sm.displayNetwork();
+
+	sm.maxFriend("a");
+
+	sm.bfs();
 
 	return 0;
 }
