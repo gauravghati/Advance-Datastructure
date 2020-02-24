@@ -47,8 +47,9 @@ public:
 	void insertUser(string);
 	void addFriend(string, string);
 	void displayNetwork();
-	void maxFriend(string);
-	void bfs();
+	void maxFriend();
+	void bfs_max_min();
+	void dfs_month(int);
 	virtual ~SocialMedia();
 };
 

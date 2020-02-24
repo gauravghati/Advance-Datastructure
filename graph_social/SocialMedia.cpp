@@ -7,7 +7,7 @@
 
 #include "SocialMedia.h"
 #include <iostream>
-#include <list> 
+#include <list>
 
 VertexNode::VertexNode() {
 	nextVertex = NULL;
@@ -42,14 +42,23 @@ void SocialMedia::insertUser(string name){
 	VertexNode *newPtr = new VertexNode;
 
 	newPtr->name = name;
-	cout << "\n------Enter Data OF User-----\ncomments: ";
+	cout << "comments: ";
 	cin >> (newPtr-> comments);
-	// cout << "\nEnter date of birth\ndd: ";
-	// cin >> (newPtr-> dd);
-	// cout << "\nmm: ";
-	// cin >> (newPtr-> mm);
-	// cout << "\nyyyy: ";
-	// cin >> (newPtr-> yyyy);
+	 cout << "\nEnter date of birth: \n";
+	 do{
+		 cout << "dd: ";
+		 cin >> (newPtr-> dd);
+	 }while(newPtr->dd<0 || newPtr->dd > 31);
+
+	 do{
+		 cout << "mm: ";
+		 cin >> (newPtr-> mm);
+	 }while(newPtr->mm<0 || newPtr->mm > 12);
+
+	 do{
+		 cout << "yyyy: ";
+		 cin >> (newPtr-> yyyy);
+	 }while(newPtr->yyyy<1990 || newPtr->yyyy > 2020);
 
 	VertexNode *temp;
 	temp = G->head;
@@ -97,7 +106,7 @@ void SocialMedia::addFriend(string toname, string fromname) {
 		EdgeNode *tempe = tovertex->nextEdge;
 		while(tempe!=NULL && tempe->nextEdge!=NULL){
 			tempe = tempe->nextEdge;
-		} 
+		}
 		if(tempe==NULL){
 			tovertex->nextEdge = fromedge;
 		} else {
@@ -108,7 +117,7 @@ void SocialMedia::addFriend(string toname, string fromname) {
 		tempe = fromvertex->nextEdge;
 		while(tempe!=NULL && tempe->nextEdge!=NULL){
 			tempe = tempe->nextEdge;
-		} 
+		}
 		if(tempe==NULL){
 			fromvertex->nextEdge = toedge;
 		} else {
@@ -134,7 +143,7 @@ void SocialMedia::displayNetwork(){
 	}
 }
 
-void SocialMedia::maxFriend(string){
+void SocialMedia::maxFriend(){
 	VertexNode *vptr = G->head;
 	VertexNode *maxv;
 
@@ -155,23 +164,27 @@ void SocialMedia::maxFriend(string){
 		vptr = vptr -> nextVertex;
 	}
 
-	cout << maxv->name << " have maximum number of comments i.e. " << max << "\n";
+	cout << maxv->name << " have maximum number of friends i.e. " << max << "\n";
 }
 
-void SocialMedia::bfs(){
+void SocialMedia::bfs_max_min(){
 	list<VertexNode*> queue;
-	VertexNode *temp = G->head;
+	VertexNode *temp = G->head, *val=temp;
 
 	int max = temp->comments, min = temp->comments;
 	VertexNode *maxv, *minv;
 
+	while(val != NULL){
+		val->visited = false;
+		val = val->nextVertex;
+	}
+
 	temp->visited = true;
 	queue.push_back(temp);
 
-    while(!queue.empty()) { 
-        temp = queue.front(); 
-        cout << temp->name << " "; 
-        queue.pop_front(); 
+    while(!queue.empty()) {
+        temp = queue.front();
+        queue.pop_front();
 
         EdgeNode *frd = temp->nextEdge;
        	while(frd != NULL){
@@ -192,5 +205,41 @@ void SocialMedia::bfs(){
        	}
     }
     cout << "\n";
-    cout << max << " " << min;
+    cout << "Maximum Comments: "<< max << "\nMinimum Comments: " << min << "\n";
+}
+
+void SocialMedia::dfs_month(int mm){
+	list<VertexNode*> stack;
+	VertexNode *temp = G->head;
+
+	VertexNode *user = NULL, *val=temp;
+	while(val != NULL){
+		val->visited = false;
+		val = val->nextVertex;
+	}
+
+	temp->visited = true;
+	stack.push_back(temp);
+
+    while(!stack.empty()) {
+        temp = stack.back();
+        stack.pop_back();
+
+        EdgeNode *frd = temp->nextEdge;
+       	while(frd != NULL){
+       		if(!frd->nextVertex->visited){
+       			frd->nextVertex->visited = true;
+       			stack.push_back(frd->nextVertex);
+       		}
+       		if(frd->nextVertex->mm == mm){
+       			user = frd->nextVertex;
+       		}
+       		frd = frd -> nextEdge;
+       	}
+    }
+    if(user == NULL){
+    	cout << "User Not Found.\n";
+    } else {
+        cout << "\nUser having birthday in that month is: " << user->name << "\n";
+    }
 }
