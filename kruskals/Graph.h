@@ -8,6 +8,9 @@
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
+#include<iostream>
+using namespace std;
+
 class VertexNode;
 
 class EdgeNode{					// Edge
@@ -20,8 +23,8 @@ class EdgeNode{					// Edge
 };
 
 class VertexNode{				// VERTEX
-	int value;
 public:
+	int value;
 	VertexNode();
 	bool visited;
 	EdgeNode *nextEdge;
@@ -36,12 +39,16 @@ public:
 
 class Graph {
 	GraphHead *G;
+	void displayTree();
+	EdgeNode* bfs_min();
+	bool allvisited();
 public:
 	Graph();
 	void createNetwork();
-	void addEdge(int, int);
+	void addEdge(int, int, int);
 	void insertVertex(int);
 	void displayNetwork();
+	void minimumSpanningTree();
 	virtual ~Graph();
 };
 
