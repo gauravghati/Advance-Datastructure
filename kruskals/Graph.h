@@ -40,7 +40,7 @@ public:
 class Graph {
 	GraphHead *G;
 	void displayTree();
-	EdgeNode* bfs_min();
+	EdgeNode* dir_min();
 	bool allvisited();
 public:
 	Graph();

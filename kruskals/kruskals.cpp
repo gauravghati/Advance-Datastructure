@@ -26,9 +26,13 @@ int main() {
 	g.insertVertex(4);
 
 	g.addEdge(1, 2, 80);
-	g.addEdge(2, 3, 90);
-	g.addEdge(3, 4, 89);
+	g.addEdge(2, 3, 65);
+	g.addEdge(3, 4, 92);
 	g.addEdge(1, 4, 78);
+
+	g.displayNetwork();
+
+	g.minimumSpanningTree();
 
 	return 0;
 }

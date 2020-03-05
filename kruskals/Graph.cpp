@@ -9,7 +9,6 @@
 #include <iostream>
 #include <list>
 
-
 VertexNode::VertexNode() {
 	value = 0;
 	visited = false;
@@ -57,40 +56,63 @@ void Graph::insertVertex(int val){
 	G->count += 1;
 }
 
-EdgeNode* Graph :: bfs_min(){				// Find Min Edge
-	list<VertexNode*> stack;
-	VertexNode *temp = G->head;
+EdgeNode* Graph :: dir_min(){
+	VertexNode *vptr = G->head;
+	EdgeNode *mine = vptr->nextEdge;
 
-	EdgeNode* min = new EdgeNode;
-	min = temp->nextEdge;
+	int minw;
 
-	VertexNode *user = NULL, *val=temp;
+	while(vptr != NULL){
+		EdgeNode *friends = vptr->nextEdge;
+		cout << "2-";
+		while(friends != NULL){
+			cout << "3-";
+			minw = mine->weight;
+			if(friends->weight < minw && !friends->nextVertex->visited){
+				cout << friends->weight << "---\n";
+				mine = friends;
+			}
+			friends = friends->nextEdge;
+		}
+		vptr = vptr -> nextVertex;
+	}
+	return mine;
+}
+
+bool Graph :: allvisited(){
+	VertexNode *vptr = G->head;
+	while(vptr != NULL){
+		if(!vptr->visited)
+			return false;
+		vptr = vptr->nextVertex;
+	}
+	return true;
+}
+
+void Graph :: minimumSpanningTree(){
+	// init visited flag to false
+	VertexNode *val = G->head;
 	while(val != NULL){
 		val->visited = false;
 		val = val->nextVertex;
 	}
 
-	temp->visited = true;
-	stack.push_back(temp);
+	EdgeNode *min, *anothE;
+	while(!allvisited()){
+		cout << "1-\n";
+		min = dir_min();
+		cout << min->weight << "\n";
+		min->nextVertex->visited = true;
+		anothE = min->nextVertex->nextEdge;
+		while(anothE!=NULL){
+			if(anothE->weight == min->weight)
+				anothE->nextVertex->visited = true;
+			anothE = anothE->nextEdge;
+		}
 
-    while(!stack.empty()) {
-        temp = stack.back();
-        stack.pop_back();
-
-        EdgeNode *frd = temp->nextEdge;
-       	while(frd != NULL){
-       		if(!frd->nextVertex->visited){
-   				frd->nextVertex->visited = true;
-   				stack.push_back(frd->nextVertex);
-
-       			if(min->weight > frd->weight){
-       				min = frd;
-       			}
-       		}
-       		frd = frd -> nextEdge;
-       	}
-    }
-    return min;
+		min->intree = true;
+	}
+	displayTree();
 }
 
 void Graph::addEdge(int toval, int fromval, int weight) {
@@ -154,7 +176,8 @@ void Graph::displayNetwork(){
 		EdgeNode *friends = vptr->nextEdge;
 
 		while(friends != NULL){
-			std :: cout << (friends->nextVertex->value) << ((friends->nextEdge==NULL)? "" : " , ");
+			std :: cout << (friends->nextVertex->value) << "(" << friends->weight << ")"
+					<< ((friends->nextEdge==NULL)? "" : " , ");
 			friends = friends->nextEdge;
 		}
 		std :: cout << "\n";
@@ -171,30 +194,12 @@ void Graph::displayTree(){
 
 			while(friends != NULL){
 				if(friends->intree){
-					std :: cout << (friends->nextVertex->value) << ((friends->nextEdge==NULL)? "" : " , ");
+					std :: cout << (friends->nextVertex->value) << "(" << friends->weight << ")"
+							<< ((friends->nextEdge==NULL)? "" : " , ");
 				}
 				friends = friends->nextEdge;
 			}
 			std :: cout << "\n";
 			vptr = vptr -> nextVertex;
 		}
-}
-
-bool Graph :: allvisited(){
-	VertexNode *vptr = G->head;
-	while(vptr != NULL){
-		vptr = vptr->nextVertex;
-		if(!vptr->visited)
-			return false;
-	}
-	return true;
-}
-
-void Graph :: minimumSpanningTree(){
-	EdgeNode *min;
-	while(!allvisited()){
-		min = bfs_min();
-		min->intree = true;
-	}
-	displayTree();
 }
